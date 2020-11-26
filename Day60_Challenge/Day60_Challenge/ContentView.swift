@@ -8,31 +8,24 @@
 import SwiftUI
 
 struct Result: Codable {
-     var results: [User]
+     var results: [Users]
 }
 
-struct User: Identifiable, Codable {
-    let id: UUID
-    var isActive: String
+struct Users: Identifiable, Codable {
+    var id: UUID
+    var isActive: Bool
     var name: String
-    var age: String
+    var age: Int
     var company: String
     var address: String
     var email: String
     var about: String
-    var registered: Date
-    var tags: [String]
-    var friends: [Friends]
-}
-
-struct Friends: Identifiable, Codable {
-    var name: String
-    let id: UUID
+    var registered: String
 }
 
 struct ContentView: View {
     
-    @State var results = [User]()
+    @State var results = [Users]()
     
     var body: some View {
         NavigationView {
@@ -47,7 +40,7 @@ struct ContentView: View {
                     
                     Spacer()
                     
-                    Text(employee.age)
+                    Text("\(employee.age)")
                 }
             }
             .onAppear(perform: loadDocument)
@@ -62,15 +55,33 @@ struct ContentView: View {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
-                if let decoded = try? JSONDecoder().decode(Result.self, from: data) {
+                do {
+                    let decoded = try JSONDecoder().decode([Users].self, from: data)
                     DispatchQueue.main.async {
-                        self.results = decoded.results
+                        do {
+                            var user = try Users.self(from: JSONDecoder().self as! Decoder)
+                            for decode in decoded {
+                                user.about = decode.about
+                                user.address = decode.address
+                                user.age = decode.age
+                                user.company = decode.company
+                                user.email = decode.email
+                                user.id = decode.id
+                                user.isActive = decode.isActive
+                                user.name = decode.name
+                                user.registered = decode.registered
+                                results.append(user)
+                            }
+                            results.insert(user, at: 0)
+                        } catch let error as NSError {
+                            print("ERROR 74: \(error.localizedDescription)")
+                        }
                     }
-                    
-                    return
+                } catch let error as NSError {
+                    print("ERROR 78: \(error.localizedDescription) \n\n\(error.userInfo) \n\n\(error) \n\nEND ERROR")
                 }
             }
-            print("Fetch failed: \(error?.localizedDescription ?? "Unknown Error")")
+            print("Fetch Failed: \(error?.localizedDescription ?? "Unknown Error")")
         }.resume()
     }
 }
