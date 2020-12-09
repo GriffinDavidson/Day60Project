@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-struct Result: Codable {
-     var results: [Users]
-}
-
 struct Users: Identifiable, Codable {
     var id: UUID
     var isActive: Bool
@@ -21,6 +17,13 @@ struct Users: Identifiable, Codable {
     var email: String
     var about: String
     var registered: String
+    var tags: [String]
+    var friends: [Friends]
+}
+
+struct Friends: Identifiable, Codable {
+    var name: String
+    var id: UUID
 }
 
 struct ContentView: View {
@@ -30,21 +33,23 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(results, id: \.id) { employee in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(employee.name)
-                            .font(.headline)
-                        Text(employee.company)
-                            .foregroundColor(.secondary)
+                NavigationLink(destination: DetailView(employee: employee)) {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(employee.name)
+                                .font(.headline)
+                            Text("\(employee.company) · \(employee.age)")
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        IsActiveView(isActive: employee.isActive)
                     }
-                    
-                    Spacer()
-                    
-                    Text("\(employee.age)")
                 }
             }
             .onAppear(perform: loadDocument)
-            .navigationBarTitle("Day 60 Project")
+            .navigationBarTitle("People")
         }
     }
     
@@ -58,30 +63,12 @@ struct ContentView: View {
                 do {
                     let decoded = try JSONDecoder().decode([Users].self, from: data)
                     DispatchQueue.main.async {
-                        do {
-                            var user = try Users.self(from: JSONDecoder().self as! Decoder)
-                            for decode in decoded {
-                                user.about = decode.about
-                                user.address = decode.address
-                                user.age = decode.age
-                                user.company = decode.company
-                                user.email = decode.email
-                                user.id = decode.id
-                                user.isActive = decode.isActive
-                                user.name = decode.name
-                                user.registered = decode.registered
-                                results.append(user)
-                            }
-                            results.insert(user, at: 0)
-                        } catch let error as NSError {
-                            print("ERROR 74: \(error.localizedDescription)")
-                        }
+                        self.results = decoded
                     }
                 } catch let error as NSError {
-                    print("ERROR 78: \(error.localizedDescription) \n\n\(error.userInfo) \n\n\(error) \n\nEND ERROR")
+                    print("ERROR: \(error.localizedDescription)")
                 }
             }
-            print("Fetch Failed: \(error?.localizedDescription ?? "Unknown Error")")
         }.resume()
     }
 }
@@ -89,5 +76,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .preferredColorScheme(.light)
     }
 }

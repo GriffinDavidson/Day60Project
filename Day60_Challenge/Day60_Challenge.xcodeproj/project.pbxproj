@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0304AA02580659900FB3030 /* FriendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0304A9F2580659800FB3030 /* FriendButton.swift */; };
+		E03A2AE825708BE70003B01E /* IsActiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A2AE725708BE70003B01E /* IsActiveView.swift */; };
 		E0646D12256C4FC100C4A171 /* Day60_ChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0646D11256C4FC100C4A171 /* Day60_ChallengeApp.swift */; };
 		E0646D14256C4FC100C4A171 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0646D13256C4FC100C4A171 /* ContentView.swift */; };
 		E0646D16256C4FC300C4A171 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0646D15256C4FC300C4A171 /* Assets.xcassets */; };
 		E0646D19256C4FC300C4A171 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0646D18256C4FC300C4A171 /* Preview Assets.xcassets */; };
+		E0F0A0CA257F03830058EE34 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F0A0C9257F03830058EE34 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E0304A9F2580659800FB3030 /* FriendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendButton.swift; sourceTree = "<group>"; };
+		E03A2AE725708BE70003B01E /* IsActiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsActiveView.swift; sourceTree = "<group>"; };
 		E0646D0E256C4FC100C4A171 /* Day60_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Day60_Challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0646D11256C4FC100C4A171 /* Day60_ChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day60_ChallengeApp.swift; sourceTree = "<group>"; };
 		E0646D13256C4FC100C4A171 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0646D15256C4FC300C4A171 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0646D18256C4FC300C4A171 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E0646D1A256C4FC300C4A171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0F0A0C9257F03830058EE34 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,9 @@
 			children = (
 				E0646D11256C4FC100C4A171 /* Day60_ChallengeApp.swift */,
 				E0646D13256C4FC100C4A171 /* ContentView.swift */,
+				E0F0A0C9257F03830058EE34 /* DetailView.swift */,
+				E03A2AE725708BE70003B01E /* IsActiveView.swift */,
+				E0304A9F2580659800FB3030 /* FriendButton.swift */,
 				E0646D15256C4FC300C4A171 /* Assets.xcassets */,
 				E0646D1A256C4FC300C4A171 /* Info.plist */,
 				E0646D17256C4FC300C4A171 /* Preview Content */,
@@ -138,6 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0304AA02580659900FB3030 /* FriendButton.swift in Sources */,
+				E03A2AE825708BE70003B01E /* IsActiveView.swift in Sources */,
+				E0F0A0CA257F03830058EE34 /* DetailView.swift in Sources */,
 				E0646D14256C4FC100C4A171 /* ContentView.swift in Sources */,
 				E0646D12256C4FC100C4A171 /* Day60_ChallengeApp.swift in Sources */,
 			);
